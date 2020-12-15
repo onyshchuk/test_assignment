@@ -50,7 +50,7 @@ const App = () => {
       setLastAuthor(lastAuthor - step);
     }
   };
-  console.log(firstAuthor);
+
   const searchValueCallback = useCallback(value => setSearchValue(value), [setSearchValue]);
 
   return (
