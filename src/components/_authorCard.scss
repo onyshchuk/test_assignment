@@ -1,0 +1,71 @@
+.author-card {
+  height: 8vh;
+  min-height: 8rem;
+  max-height: 10rem;
+  display: flex;
+  align-items: center;
+
+  &__index {
+    padding: 0 3rem 0 1rem;
+    max-width: 1.7rem;
+    color: $color-grey-dark-1;
+    font-size: 1.3rem;
+  }
+
+  &__logo {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: $shadow-secondary;
+    color: $color-white;
+    font-weight: bold;
+    font-size: 2rem;
+    text-shadow: $text-shadow-primary;
+  }
+
+  &__author {
+    margin-left: 1rem;
+    font-size: 2rem;
+    margin-right: auto;
+  }
+
+  &__name {
+    color: $color-primary-dark;
+    font-weight: bold;
+    letter-spacing: -1px;
+  }
+
+  &__count-pub {
+    color: $color-grey-dark-1;
+    line-height: 1;
+    padding-bottom: 0.6rem;
+  }
+
+  &__medal {
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 4.5rem;
+      height: 4.5rem;
+    }
+  }
+
+  &__pageviews {
+    color: $color-primary-dark;
+    font-size: 2rem;
+    font-weight: bold;
+    padding-bottom: 2.6rem;
+    margin-left: auto;
+    margin-right: 3rem;
+
+    &--disabled {
+      opacity: 0.5;
+    }
+  }
+}

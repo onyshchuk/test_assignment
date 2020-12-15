@@ -1,0 +1,65 @@
+.App {
+  background: $gradient-main;
+  background-color: $color-primary;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  color: $color-black;
+  padding: 3rem 0;
+
+  .container {
+    width: 100%;
+    max-width: 70rem;
+    margin: 0 auto;
+    background-color: $color-white;
+    border-radius: 1rem;
+    box-shadow: $shadow-primary;
+    overflow: hidden;
+    flex-shrink: 0;
+
+    & > div:nth-child(odd):not(:first-child) {
+      background: $color-grey-light-2;
+      border-bottom: 1px solid darken($color-grey-light-1, 1%);
+      border-top: 1px solid darken($color-grey-light-2, 1%);
+    }
+  }
+
+  .message {
+    color: $color-primary;
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 10rem 5rem;
+    text-align: center;
+  }
+
+  .page-count {
+    margin: 0 auto;
+    color: $color-white;
+    display: flex;
+    width: 18.3rem;
+    font-size: 2rem;
+    margin-top: 3rem;
+    height: 100%;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    &__prev,
+    &__next {
+      opacity: 0.5;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      &--disabled {
+        opacity: 0;
+        cursor: auto;
+
+        &:hover {
+          opacity: 0;
+        }
+      }
+    }
+  }
+}

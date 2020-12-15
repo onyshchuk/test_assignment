@@ -1,0 +1,22 @@
+// COLORS
+$color-primary: #275e88;
+$color-primary-dark: #122b3f;
+
+$color-grey-light-1: #e9eef3;
+$color-grey-light-2: #f4f6f9;
+
+$color-grey-dark-1: #a7a7a9;
+$color-grey-dark-2: #b4b8bc;
+
+$color-white: #fff;
+$color-black: #000;
+
+$gradient-main: linear-gradient(0deg, $color-primary 0%, $color-primary-dark 100%);
+
+$shadow-primary: 0 5px 20px 5px rgba($color-black, 0.3);
+$shadow-secondary: 0 0 15px 5px rgba($color-black, 0.25);
+$text-shadow-primary: 0 0 8px rgba($color-black, 0.3);
+
+// FONT
+$font-primary: "Lato", sans-serif;
+$default-font-size: 1.6rem;
