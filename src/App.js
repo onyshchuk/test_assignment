@@ -7,33 +7,54 @@ import AuthorCard from "./components/authorCard";
 import left from "./images/chevron-thin-left.svg";
 import right from "./images/chevron-thin-right.svg";
 
-import sortAuthors from "./utils/sortAuthors";
+import sortAuthors, { sortByName, sortByPageviews } from "./utils/sort";
 
 const App = () => {
-  const [sortedData] = useState(sortAuthors(data));
+  const [sortedData, setSortedData] = useState(sortAuthors(data));
   const [filteredData, setFilteredData] = useState(sortedData);
   const [firstAuthor, setFirstAuthor] = useState(0);
-  const [lastAuthor, setLastAuthor] = useState(filteredData ? (filteredData.length < 10 ? data.length : 10) : 10);
+  const [lastAuthor, setLastAuthor] = useState(
+    filteredData ? (filteredData.length < 10 ? filteredData.length : 10) : 1
+  );
   const [dataToRender, setDataToRender] = useState(filteredData ? filteredData.slice(firstAuthor, lastAuthor) : []);
   const [medals, setMedals] = useState([sortedData[0], sortedData[1], sortedData[2]]);
   const [searchValue, setSearchValue] = useState("");
+
+  const getMedals = data => {
+    const sortedData = sortByPageviews(data);
+    return [sortedData[0].pageviews, sortedData[1].pageviews, sortedData[2].pageviews];
+  };
 
   useEffect(() => {
     setDataToRender(filteredData.slice(firstAuthor, lastAuthor));
   }, [firstAuthor, lastAuthor, filteredData]);
 
   useEffect(() => {
-    setMedals([sortedData[0], sortedData[1], sortedData[2]]);
-  }, [sortedData]);
+    setMedals(getMedals(data));
+  }, [setMedals]);
 
   useEffect(() => {
-    setFilteredData(
-      sortedData.filter(author => {
-        const name = author.name.split(" ");
-        return name[0].toLowerCase().startsWith(searchValue) || name[1].toLowerCase().startsWith(searchValue);
-      })
-    );
+    const filteredArray = sortedData.filter(author => {
+      const name = author.name.split(" ");
+      return (
+        name[0].toLowerCase().startsWith(searchValue) ||
+        name[1].toLowerCase().startsWith(searchValue) ||
+        name[0].toLowerCase().includes(searchValue) ||
+        name[1].toLowerCase().includes(searchValue)
+      );
+    });
+    setFilteredData(filteredArray);
+    setFirstAuthor(0);
+    setLastAuthor(filteredArray.length < 10 ? filteredArray.length : 10);
   }, [searchValue, sortedData]);
+
+  const handleSortByPageviews = useCallback(() => {
+    setSortedData(sortByPageviews(data));
+  }, [setSortedData]);
+
+  const handleSortByName = useCallback(() => {
+    setSortedData(sortByName(data));
+  }, [setSortedData]);
 
   const nextPage = () => {
     if (lastAuthor < filteredData.length) {
@@ -66,6 +87,8 @@ const App = () => {
               count_pub={author.count_pub}
               pageviews={author.pageviews}
               medals={medals}
+              handleSortByName={handleSortByName}
+              handleSortByPageviews={handleSortByPageviews}
             />
           ))
         ) : (

@@ -6,8 +6,8 @@ import medal3 from "../images/medals/3rd.svg";
 import stringToColor from "../utils/stringToColor";
 import numberWithSpaces from "../utils/numberWithSpaces";
 
-const AuthorCard = ({ index, name, count_pub, pageviews, medals }) => {
-  const medal = medals.findIndex(author => author.pageviews === pageviews);
+const AuthorCard = ({ index, name, count_pub, pageviews, medals, handleSortByName, handleSortByPageviews }) => {
+  const medal = medals.findIndex(medalPageviews => medalPageviews === pageviews);
 
   return (
     <div className="author-card">
@@ -16,7 +16,9 @@ const AuthorCard = ({ index, name, count_pub, pageviews, medals }) => {
         <span>{name[0]}</span>
       </div>
       <div className="author-card__author">
-        <div className="author-card__name">{name}</div>
+        <div onClick={handleSortByName} className="author-card__name">
+          {name}
+        </div>
         <div className="author-card__count-pub">{`${count_pub} публ.`}</div>
       </div>
       {medal >= 0 && (
@@ -27,7 +29,9 @@ const AuthorCard = ({ index, name, count_pub, pageviews, medals }) => {
           />
         </div>
       )}
-      <div className={`author-card__pageviews${pageviews === 0 ? " author-card__pageviews--disabled" : ""}`}>
+      <div
+        onClick={handleSortByPageviews}
+        className={`author-card__pageviews${pageviews === 0 ? " author-card__pageviews--disabled" : ""}`}>
         {numberWithSpaces(pageviews)}
       </div>
     </div>
