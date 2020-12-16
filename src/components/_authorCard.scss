@@ -36,6 +36,7 @@
     color: $color-primary-dark;
     font-weight: bold;
     letter-spacing: -1px;
+    cursor: pointer;
   }
 
   &__count-pub {
@@ -63,6 +64,7 @@
     padding-bottom: 2.6rem;
     margin-left: auto;
     margin-right: 3rem;
+    cursor: pointer;
 
     &--disabled {
       opacity: 0.5;
